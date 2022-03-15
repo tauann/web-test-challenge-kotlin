@@ -46,7 +46,7 @@ class AddCustomerPage(driver: WebDriver) : BasePage(driver) {
     private lateinit var save: WebElement
 
     @FindBy(id = "report-success")
-    private lateinit var successMessage: WebElement
+    private lateinit var addSuccessMessage: WebElement
 
     @FindBy(linkText = "Go back to list")
     private lateinit var goBackToList: WebElement
@@ -116,7 +116,7 @@ class AddCustomerPage(driver: WebDriver) : BasePage(driver) {
         return this
     }
 
-    fun getSuccessMessage(): String = waitVisibilityOfElement(successMessage).text
+    fun getAddSuccessMessage(): String = waitVisibilityOfElement(addSuccessMessage).text
 
     fun clickGoBackToList() = goBackToList.click()
 }

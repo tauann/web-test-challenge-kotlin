@@ -1,6 +1,9 @@
 package tests
 
-import core.BaseTest
+import core.Constants.Companion.ADDSUCCESSMESSAGE
+import core.Constants.Companion.DELETEALERTTEXT
+import core.Constants.Companion.DELETESUCCESSMESSAGE
+import core.DriverFactory
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
@@ -8,9 +11,10 @@ import org.junit.jupiter.api.Test
 import page.AddCustomerPage
 import page.ListPage
 
-class CustomerTest : BaseTest() {
+class CustomerTest : DriverFactory() {
     private val list = ListPage(driver!!)
     private val add = AddCustomerPage(driver!!)
+
 
     @BeforeEach
     fun before() {
@@ -43,10 +47,7 @@ class CustomerTest : BaseTest() {
             .writeCreditLimit("200")
             .clickSave()
 
-        assertEquals(
-            "Your data has been successfully stored into the database. Edit Record or Go back to list",
-            add.getSuccessMessage()
-        )
+        assertEquals(ADDSUCCESSMESSAGE, add.getAddSuccessMessage())
     }
 
     @Test
@@ -70,10 +71,8 @@ class CustomerTest : BaseTest() {
             .writeCreditLimit("200")
             .clickSave()
 
-        assertEquals(
-            "Your data has been successfully stored into the database. Edit Record or Go back to list",
-            add.getSuccessMessage()
-        )
+
+        assertEquals(ADDSUCCESSMESSAGE, add.getAddSuccessMessage())
 
         add
             .clickGoBackToList()
@@ -83,9 +82,9 @@ class CustomerTest : BaseTest() {
             .clickActionsSelectAll()
             .clickActionsDelete()
 
-        assertEquals("Are you sure that you want to delete this 1 item?", list.getDeleteAlertText())
-        list.clickDeleleAlertDelete()
-        assertEquals("Your data has been successfully deleted from the database.", list.getDeleteMessageSuccess())
 
+        assertEquals(DELETEALERTTEXT, list.getDeleteAlertText())
+        list.clickDeleleAlertDelete()
+        assertEquals(DELETESUCCESSMESSAGE, list.getDeleteSuccessMessage())
     }
 }

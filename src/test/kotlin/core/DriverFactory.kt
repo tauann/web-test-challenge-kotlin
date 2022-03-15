@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver
 import org.openqa.selenium.chrome.ChromeDriver
 import java.time.Duration
 
-abstract class BaseTest {
+abstract class DriverFactory {
     protected var driver: WebDriver? = null
         get() {
             if (field == null) {

@@ -32,7 +32,7 @@ class ListPage(driver: WebDriver) : BasePage(driver) {
     private lateinit var deleteAlertDelete: WebElement
 
     @FindBy(css = "span[data-growl='message']")
-    private lateinit var deleteMessageSuccess: WebElement
+    private lateinit var deleteSuccessMessage: WebElement
 
     fun switchTheme(text: String): ListPage {
         Select(switchTheme).selectByVisibleText(text)
@@ -64,5 +64,5 @@ class ListPage(driver: WebDriver) : BasePage(driver) {
         return this
     }
 
-    fun getDeleteMessageSuccess(): String = waitVisibilityOfElement(deleteMessageSuccess).text
+    fun getDeleteSuccessMessage(): String = waitVisibilityOfElement(deleteSuccessMessage).text
 }
