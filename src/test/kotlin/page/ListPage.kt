@@ -1,6 +1,6 @@
 package page
 
-import core.BasePage
+import utils.BasePage
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.WebElement
 import org.openqa.selenium.support.FindBy
@@ -25,7 +25,7 @@ class ListPage(driver: WebDriver) : BasePage(driver) {
     @FindBy(linkText = "Delete")
     private lateinit var actionsDelete: WebElement
 
-    @FindBy(className = "alert-delete-multiple-one")
+    @FindBy(css = "div.delete-multiple-confirmation.modal.fade.in.show div.modal-body")
     private lateinit var deleteAlertText: WebElement
 
     @FindBy(className = "delete-multiple-confirmation-button")

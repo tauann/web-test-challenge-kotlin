@@ -1,30 +1,18 @@
 package tests
 
-import core.Constants.Companion.ADDSUCCESSMESSAGE
-import core.Constants.Companion.DELETEALERTTEXT
-import core.Constants.Companion.DELETESUCCESSMESSAGE
-import core.DriverFactory
-import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import page.AddCustomerPage
 import page.ListPage
+import utils.BaseTest
+import utils.Constants.Companion.ADDSUCCESSMESSAGE
+import utils.Constants.Companion.DELETEALERTTEXT
+import utils.Constants.Companion.DELETESUCCESSMESSAGE
 
-class CustomerTest : DriverFactory() {
-    private val list = ListPage(driver!!)
-    private val add = AddCustomerPage(driver!!)
-
-
-    @BeforeEach
-    fun before() {
-        driver?.get("https://www.grocerycrud.com/v1.x/demo/my_boss_is_in_a_hurry/bootstrap")
-    }
-
-    @AfterEach
-    fun after() {
-        driver?.quit()
-    }
+class CustomerTest : BaseTest() {
+    private var list = ListPage(driver)
+    private var add = AddCustomerPage(driver)
 
     @Test
     fun challengeOneTest() {
@@ -74,8 +62,7 @@ class CustomerTest : DriverFactory() {
 
         assertEquals(ADDSUCCESSMESSAGE, add.getAddSuccessMessage())
 
-        add
-            .clickGoBackToList()
+        add.clickGoBackToList()
 
         list
             .searchCustomerName("Teste Sicredi")
@@ -83,8 +70,10 @@ class CustomerTest : DriverFactory() {
             .clickActionsDelete()
 
 
-        assertEquals(DELETEALERTTEXT, list.getDeleteAlertText())
+        assertTrue(list.getDeleteAlertText().contains(DELETEALERTTEXT))
+
         list.clickDeleleAlertDelete()
+
         assertEquals(DELETESUCCESSMESSAGE, list.getDeleteSuccessMessage())
     }
 }
