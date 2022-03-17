@@ -5,10 +5,10 @@ import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import page.AddCustomerPage
 import page.ListPage
-import utils.BaseTest
-import utils.Constants.Companion.ADDSUCCESSMESSAGE
-import utils.Constants.Companion.DELETEALERTTEXT
-import utils.Constants.Companion.DELETESUCCESSMESSAGE
+import util.BaseTest
+import util.Constants.Companion.SAVEMESSAGE
+import util.Constants.Companion.DELETEALERTTEXT
+import util.Constants.Companion.DELETESUCCESSMESSAGE
 
 class CustomerTest : BaseTest() {
     private var list = ListPage(driver)
@@ -18,62 +18,53 @@ class CustomerTest : BaseTest() {
     fun challengeOneTest() {
         list
             .switchTheme("Bootstrap V4 Theme")
-            .clickAddRecord()
+            .addRecord()
 
-        add
-            .writeCustomerName("Teste Sicredi")
-            .writeContactLastName("Teste")
-            .writeContactFirstName("Tauan")
-            .writePhone("51 9999-9999")
-            .writeAdressLine1("Av Assis Brasil, 3970")
-            .writeAddressLine2("Torre D")
-            .writeCity("Porto Alegre")
-            .writeState("RS")
-            .writePostalCode("91000-000")
-            .writeCountry("Brasil")
-            .writeSalesRepEmployeeNumber("51")
-            .writeCreditLimit("200")
-            .clickSave()
+        fillAllRequiredFieldsOfCustomer()
+        add.save()
 
-        assertEquals(ADDSUCCESSMESSAGE, add.getAddSuccessMessage())
+        assertEquals(SAVEMESSAGE, add.saveMessage())
     }
 
     @Test
     fun challengeTwoTest() {
         list
             .switchTheme("Bootstrap V4 Theme")
-            .clickAddRecord()
+            .addRecord()
 
-        add
-            .writeCustomerName("Teste Sicredi")
-            .writeContactLastName("Teste")
-            .writeContactFirstName("Tauan")
-            .writePhone("51 9999-9999")
-            .writeAdressLine1("Av Assis Brasil, 3970")
-            .writeAddressLine2("Torre D")
-            .writeCity("Porto Alegre")
-            .writeState("RS")
-            .writePostalCode("91000-000")
-            .writeCountry("Brasil")
-            .writeSalesRepEmployeeNumber("51")
-            .writeCreditLimit("200")
-            .clickSave()
+        fillAllRequiredFieldsOfCustomer()
 
+        add.save()
 
-        assertEquals(ADDSUCCESSMESSAGE, add.getAddSuccessMessage())
+        assertEquals(SAVEMESSAGE, add.saveMessage())
 
-        add.clickGoBackToList()
+        add.goBackToList()
 
         list
             .searchCustomerName("Teste Sicredi")
-            .clickActionsSelectAll()
-            .clickActionsDelete()
+            .selectAll()
+            .deleteAll()
 
+        assertTrue(list.deleteAlertText().contains(DELETEALERTTEXT))
 
-        assertTrue(list.getDeleteAlertText().contains(DELETEALERTTEXT))
+        list.deleleAlertDelete()
 
-        list.clickDeleleAlertDelete()
+        assertEquals(DELETESUCCESSMESSAGE, list.deleteSuccessMessage())
+    }
 
-        assertEquals(DELETESUCCESSMESSAGE, list.getDeleteSuccessMessage())
+    private fun fillAllRequiredFieldsOfCustomer() {
+        add
+            .customerName("Teste Sicredi")
+            .contactLastName("Teste")
+            .contactFirstName("Tauan")
+            .phone("51 9999-9999")
+            .adressLine1("Av Assis Brasil, 3970")
+            .addressLine2("Torre D")
+            .city("Porto Alegre")
+            .state("RS")
+            .postalCode("91000-000")
+            .country("Brasil")
+            .salesRepEmployeeNumber("51")
+            .creditLimit("200")
     }
 }

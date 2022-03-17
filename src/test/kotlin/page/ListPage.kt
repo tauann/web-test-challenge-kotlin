@@ -1,6 +1,6 @@
 package page
 
-import utils.BasePage
+import util.BasePage
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.WebElement
 import org.openqa.selenium.support.FindBy
@@ -20,10 +20,10 @@ class ListPage(driver: WebDriver) : BasePage(driver) {
     private lateinit var clearSearch: WebElement
 
     @FindBy(className = "select-all-none")
-    private lateinit var actionsRadioAll: WebElement
+    private lateinit var selectAll: WebElement
 
     @FindBy(linkText = "Delete")
-    private lateinit var actionsDelete: WebElement
+    private lateinit var deleteAll: WebElement
 
     @FindBy(css = "div.delete-multiple-confirmation.modal.fade.in.show div.modal-body")
     private lateinit var deleteAlertText: WebElement
@@ -39,7 +39,7 @@ class ListPage(driver: WebDriver) : BasePage(driver) {
         return this
     }
 
-    fun clickAddRecord() = addRecord.click()
+    fun addRecord() = addRecord.click()
 
     fun searchCustomerName(text: String): ListPage {
         customerName.sendKeys(text)
@@ -47,22 +47,22 @@ class ListPage(driver: WebDriver) : BasePage(driver) {
         return this
     }
 
-    fun clickActionsSelectAll(): ListPage {
-        actionsRadioAll.click()
+    fun selectAll(): ListPage {
+        selectAll.click()
         return this
     }
 
-    fun clickActionsDelete(): ListPage {
-        actionsDelete.click()
+    fun deleteAll(): ListPage {
+        deleteAll.click()
         return this
     }
 
-    fun getDeleteAlertText(): String = waitVisibilityOfElement(deleteAlertText).text
+    fun deleteAlertText(): String = waitVisibilityOfElement(deleteAlertText).text
 
-    fun clickDeleleAlertDelete(): ListPage {
+    fun deleleAlertDelete(): ListPage {
         deleteAlertDelete.click()
         return this
     }
 
-    fun getDeleteSuccessMessage(): String = waitVisibilityOfElement(deleteSuccessMessage).text
+    fun deleteSuccessMessage(): String = waitVisibilityOfElement(deleteSuccessMessage).text
 }

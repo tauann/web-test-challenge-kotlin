@@ -1,6 +1,6 @@
 package page
 
-import utils.BasePage
+import util.BasePage
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.WebElement
 import org.openqa.selenium.support.FindBy
@@ -46,77 +46,77 @@ class AddCustomerPage(driver: WebDriver) : BasePage(driver) {
     private lateinit var save: WebElement
 
     @FindBy(id = "report-success")
-    private lateinit var addSuccessMessage: WebElement
+    private lateinit var saveSuccess: WebElement
 
     @FindBy(linkText = "Go back to list")
     private lateinit var goBackToList: WebElement
 
-    fun writeCustomerName(text: String): AddCustomerPage {
+    fun customerName(text: String): AddCustomerPage {
         customerName.sendKeys(text)
         return this
     }
 
-    fun writeContactLastName(text: String): AddCustomerPage {
+    fun contactLastName(text: String): AddCustomerPage {
         contactLastName.sendKeys(text)
         return this
     }
 
-    fun writeContactFirstName(text: String): AddCustomerPage {
+    fun contactFirstName(text: String): AddCustomerPage {
         contactFirstName.sendKeys(text)
         return this
     }
 
-    fun writePhone(text: String): AddCustomerPage {
+    fun phone(text: String): AddCustomerPage {
         phone.sendKeys(text)
         return this
     }
 
-    fun writeAdressLine1(text: String): AddCustomerPage {
+    fun adressLine1(text: String): AddCustomerPage {
         addressLine1.sendKeys(text)
         return this
     }
 
-    fun writeAddressLine2(text: String): AddCustomerPage {
+    fun addressLine2(text: String): AddCustomerPage {
         addressLine2.sendKeys(text)
         return this
     }
 
-    fun writeCity(text: String): AddCustomerPage {
+    fun city(text: String): AddCustomerPage {
         city.sendKeys(text)
         return this
     }
 
-    fun writeState(text: String): AddCustomerPage {
+    fun state(text: String): AddCustomerPage {
         state.sendKeys(text)
         return this
     }
 
-    fun writePostalCode(text: String): AddCustomerPage {
+    fun postalCode(text: String): AddCustomerPage {
         postalCode.sendKeys(text)
         return this
     }
 
-    fun writeCountry(text: String): AddCustomerPage {
+    fun country(text: String): AddCustomerPage {
         country.sendKeys(text)
         return this
     }
 
-    fun writeSalesRepEmployeeNumber(text: String): AddCustomerPage {
+    fun salesRepEmployeeNumber(text: String): AddCustomerPage {
         salesRepEmployeeNumber.sendKeys(text)
         return this
     }
 
-    fun writeCreditLimit(text: String): AddCustomerPage {
+    fun creditLimit(text: String): AddCustomerPage {
         creditLimit.sendKeys(text)
         return this
     }
 
-    fun clickSave(): AddCustomerPage {
+    fun save(): AddCustomerPage {
         save.click()
         return this
     }
 
-    fun getAddSuccessMessage(): String = waitVisibilityOfElement(addSuccessMessage).text
+    fun saveMessage(): String = waitVisibilityOfElement(saveSuccess).text
 
-    fun clickGoBackToList() = goBackToList.click()
+    fun goBackToList() = goBackToList.click()
 }

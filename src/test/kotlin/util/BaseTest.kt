@@ -1,13 +1,11 @@
-package utils
+package util
 
-import driver.DriverFactory
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
-import org.openqa.selenium.WebDriver
-import utils.Constants.Companion.TIMEOUT
+import util.Constants.Companion.TIMEOUT
 
 abstract class BaseTest {
-    protected var driver: WebDriver = DriverFactory().driver
+    protected var driver = DriverFactory().driver
 
     @BeforeEach
     fun setup() {
