@@ -9,6 +9,7 @@ abstract class BaseTest {
 
     @BeforeEach
     fun setup() {
+        driver.manage().window().maximize()
         driver.manage().timeouts().implicitlyWait(TIMEOUT)
         driver.get("https://www.grocerycrud.com/v1.x/demo/my_boss_is_in_a_hurry/bootstrap")
     }

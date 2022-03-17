@@ -41,7 +41,7 @@ class CustomerTest : BaseTest() {
         add.goBackToList()
 
         list
-            .searchCustomerName("Teste Sicredi")
+            .searchCustomerName("User Test")
             .selectAll()
             .deleteAll()
 
@@ -54,17 +54,17 @@ class CustomerTest : BaseTest() {
 
     private fun fillAllRequiredFieldsOfCustomer() {
         add
-            .customerName("Teste Sicredi")
-            .contactLastName("Teste")
-            .contactFirstName("Tauan")
-            .phone("51 9999-9999")
-            .adressLine1("Av Assis Brasil, 3970")
-            .addressLine2("Torre D")
-            .city("Porto Alegre")
-            .state("RS")
-            .postalCode("91000-000")
-            .country("Brasil")
-            .salesRepEmployeeNumber("51")
-            .creditLimit("200")
+            .customerName("User Test")
+            .contactLastName("Test")
+            .contactFirstName("User")
+            .phone("99 99999-9999")
+            .adressLine1("Some Street")
+            .addressLine2("None")
+            .city("New York")
+            .state("NY")
+            .postalCode("99999-999")
+            .country("USA")
+            .salesRepEmployeeNumber("99")
+            .creditLimit("999999")
     }
 }
