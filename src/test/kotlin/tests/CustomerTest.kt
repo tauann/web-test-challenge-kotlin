@@ -5,14 +5,14 @@ import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import page.AddCustomerPage
 import page.ListPage
-import util.BaseTest
-import util.Constants.Companion.SAVEMESSAGE
-import util.Constants.Companion.DELETEALERTTEXT
-import util.Constants.Companion.DELETESUCCESSMESSAGE
+import base.BaseTest
+import util.Constants.Companion.SAVE_MESSAGE
+import util.Constants.Companion.DELETE_ALERT_TEXT
+import util.Constants.Companion.DELETE_SUCCESS_MESSAGE
 
 class CustomerTest : BaseTest() {
     private var list = ListPage(driver)
-    private var add = AddCustomerPage(driver)
+    private var addCustomer = AddCustomerPage(driver)
 
     @Test
     fun challengeOneTest() {
@@ -21,9 +21,9 @@ class CustomerTest : BaseTest() {
             .addRecord()
 
         fillAllRequiredFieldsOfCustomer()
-        add.save()
+        addCustomer.save()
 
-        assertEquals(SAVEMESSAGE, add.saveMessage())
+        assertEquals(SAVE_MESSAGE, addCustomer.saveMessage())
     }
 
     @Test
@@ -34,26 +34,26 @@ class CustomerTest : BaseTest() {
 
         fillAllRequiredFieldsOfCustomer()
 
-        add.save()
+        addCustomer.save()
 
-        assertEquals(SAVEMESSAGE, add.saveMessage())
+        assertEquals(SAVE_MESSAGE, addCustomer.saveMessage())
 
-        add.goBackToList()
+        addCustomer.goBackToList()
 
         list
             .searchCustomerName("User Test")
             .selectAll()
             .deleteAll()
 
-        assertTrue(list.deleteAlertText().contains(DELETEALERTTEXT))
+        assertTrue(list.deleteAlertText().contains(DELETE_ALERT_TEXT))
 
         list.deleleAlertDelete()
 
-        assertEquals(DELETESUCCESSMESSAGE, list.deleteSuccessMessage())
+        assertEquals(DELETE_SUCCESS_MESSAGE, list.deleteSuccessMessage())
     }
 
     private fun fillAllRequiredFieldsOfCustomer() {
-        add
+        addCustomer
             .customerName("User Test")
             .contactLastName("Test")
             .contactFirstName("User")
